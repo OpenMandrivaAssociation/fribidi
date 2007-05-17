@@ -1,5 +1,5 @@
-%define version 0.10.4
-%define release %mkrel 6
+%define version 0.10.7
+%define release %mkrel 1
 
 %define major 0
 %define glib_version 1.3.13
@@ -12,8 +12,8 @@ Version:	%{version}
 Release:	%{release}
 License:	LGPL
 Group:		System/Internationalization
-Source:		http://download.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
-URL:		http://fribidi.sourceforge.net/
+Source: 	http://fribidi.org/download/fribidi-%{version}.tar.gz
+URL:		http://fribidi.org
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
@@ -34,28 +34,30 @@ always written in logical order.
 The library uses unicode internally.
 
 %package	-n %{libname}-devel
-Summary:	Static libraries and headers for %{name} library
+Summary:	Libraries and headers for development with %{name}
 Group:		Development/C
 Provides:	lib%{name}-devel = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
 Requires:	%{libname} = %{version}
 
 %description	-n %{libname}-devel
-This package includes the static libraries and header files for the
-%{name} package.
+This package includes the libraries and header files for the %{name}
+package.
 
 Install this package if you want to develop or compile programs which
 will use %{name}.
 
+%package	-n %{libname}-static-devel
+Summary:	Static development files for %{name}
+Group:		Development/C
+Provides:	lib%{name}-static-devel = %{version}-%{release}
+Requires:	%{libname}-devel = %{version}-%{release}
+
+%description	-n %{libname}-static-devel
+Static development files for %{name}.
+
 %prep
 %setup -q
-
-# fix detection of glib2
-# 0.10.4-3mdk (Abel) no more necessary
-#rm -f acinclude.m4
-#touch acinclude.m4
-#aclocal
-#autoconf
 
 %build
 %configure2_5x
@@ -78,21 +80,23 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root)
-%doc README AUTHORS  ChangeLog TODO THANKS NEWS
+%doc README AUTHORS ChangeLog TODO THANKS NEWS
 %{_bindir}/fribidi
 
 %files -n %{libname}
 %defattr(-, root, root)
-%{_libdir}/*.so.*
+%{_libdir}/*.so.%{major}*
 
 %files -n %{libname}-devel
 %defattr(-, root, root)
 %{_bindir}/fribidi-config
 %multiarch %{multiarch_bindir}/fribidi-config
-%{_libdir}/*.a
 %{_libdir}/*.la
 %{_libdir}/*.so
 %{_includedir}/*
 %{_libdir}/pkgconfig/*
 
+%files -n %{libname}-static-devel
+%defattr(-, root, root)
+%{_libdir}/*.a
 
