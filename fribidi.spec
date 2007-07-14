@@ -5,6 +5,8 @@
 %define glib_version 1.3.13
 
 %define libname %mklibname %{name} %{major}
+%define develname %mklibname %{name} -d
+%define staticdevelname %mklibname %{name} -d -s
 
 Summary:	Library to support Bi-directional scripts
 Name:		fribidi
@@ -12,7 +14,7 @@ Version:	%{version}
 Release:	%{release}
 License:	LGPL
 Group:		System/Internationalization
-Source: 	http://fribidi.org/download/fribidi-%{version}.tar.gz
+Source: 	http://fribidi.org/download/fribidi-%{version}.tar.bz2
 URL:		http://fribidi.org
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
@@ -33,27 +35,29 @@ the display is done in the proper way; while the text data itself is
 always written in logical order.
 The library uses unicode internally.
 
-%package	-n %{libname}-devel
+%package	-n %{develname}
 Summary:	Libraries and headers for development with %{name}
 Group:		Development/C
 Provides:	lib%{name}-devel = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
-Requires:	%{libname} = %{version}
+Requires:	%{libname} = %{version}-%{release}
+Obsoletes:	%mklibname %{name} 0 -d
 
-%description	-n %{libname}-devel
+%description	-n %{develname}
 This package includes the libraries and header files for the %{name}
 package.
 
 Install this package if you want to develop or compile programs which
 will use %{name}.
 
-%package	-n %{libname}-static-devel
+%package	-n %{staticdevelname}
 Summary:	Static development files for %{name}
 Group:		Development/C
 Provides:	lib%{name}-static-devel = %{version}-%{release}
 Requires:	%{libname}-devel = %{version}-%{release}
+Obsoletes:	%mklibname %{name} 0 -d -s
 
-%description	-n %{libname}-static-devel
+%description	-n %{staticdevelname}
 Static development files for %{name}.
 
 %prep
@@ -63,16 +67,17 @@ Static development files for %{name}.
 %configure2_5x
 %make
 
+%check
 make check
 
 %install
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 %makeinstall_std
 
-%multiarch_binaries $RPM_BUILD_ROOT%{_bindir}/fribidi-config
+%multiarch_binaries %{buildroot}%{_bindir}/fribidi-config
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %post -n %{libname} -p /sbin/ldconfig
 
@@ -84,10 +89,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/fribidi
 
 %files -n %{libname}
-%defattr(-, root, root)
+%defattr(-,root,root)
 %{_libdir}/*.so.%{major}*
 
-%files -n %{libname}-devel
+%files -n %{develname}
 %defattr(-, root, root)
 %{_bindir}/fribidi-config
 %multiarch %{multiarch_bindir}/fribidi-config
@@ -96,7 +101,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/*
 %{_libdir}/pkgconfig/*
 
-%files -n %{libname}-static-devel
+%files -n %{staticdevelname}
 %defattr(-, root, root)
 %{_libdir}/*.a
-
