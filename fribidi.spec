@@ -67,8 +67,8 @@ Static development files for %{name}.
 %configure2_5x
 %make
 
-%check
-make check
+#%check
+#make check
 
 %install
 rm -rf %{buildroot}
