@@ -1,5 +1,5 @@
 %define version 0.10.8
-%define release %mkrel 1
+%define release %mkrel 2
 
 %define major 0
 %define glib_version 1.3.13
@@ -54,7 +54,7 @@ will use %{name}.
 Summary:	Static development files for %{name}
 Group:		Development/C
 Provides:	lib%{name}-static-devel = %{version}-%{release}
-Requires:	%{libname}-devel = %{version}-%{release}
+Requires:	%{develname} = %{version}-%{release}
 Obsoletes:	%mklibname %{name} 0 -d -s
 
 %description	-n %{staticdevelname}
