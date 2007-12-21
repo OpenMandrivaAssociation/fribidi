@@ -16,6 +16,7 @@ License:	LGPL
 Group:		System/Internationalization
 Source: 	http://fribidi.org/download/fribidi-%{version}.tar.bz2
 URL:		http://fribidi.org
+BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
 A library to handle bidirectional scripts (eg hebrew, arabic), so that
