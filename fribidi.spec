@@ -1,18 +1,13 @@
-%define version 0.10.8
-%define release %mkrel 2
-
 %define major 0
-%define glib_version 1.3.13
-
 %define libname %mklibname %{name} %{major}
 %define develname %mklibname %{name} -d
 %define staticdevelname %mklibname %{name} -d -s
 
 Summary:	Library to support Bi-directional scripts
 Name:		fribidi
-Version:	%{version}
-Release:	%{release}
-License:	LGPL
+Version:	0.10.9
+Release:	%mkrel 1
+License:	LGPLv2+
 Group:		System/Internationalization
 Source: 	http://fribidi.org/download/fribidi-%{version}.tar.bz2
 URL:		http://fribidi.org
@@ -24,18 +19,18 @@ the display is done in the proper way; while the text data itself is
 always written in logical order.
 The library uses unicode internally.
 
-%package	-n %{libname}
+%package -n %{libname}
 Summary:	Library to support Bi-directional scripts
 Group:		System/Internationalization
 Requires:	%{name} = %{version}
 
-%description	-n %{libname}
+%description -n %{libname}
 A library to handle bidirectional scripts (eg hebrew, arabic), so that
 the display is done in the proper way; while the text data itself is
 always written in logical order.
 The library uses unicode internally.
 
-%package	-n %{develname}
+%package -n %{develname}
 Summary:	Libraries and headers for development with %{name}
 Group:		Development/C
 Provides:	lib%{name}-devel = %{version}-%{release}
@@ -43,21 +38,21 @@ Provides:	%{name}-devel = %{version}-%{release}
 Requires:	%{libname} = %{version}-%{release}
 Obsoletes:	%mklibname %{name} 0 -d
 
-%description	-n %{develname}
+%description -n %{develname}
 This package includes the libraries and header files for the %{name}
 package.
 
 Install this package if you want to develop or compile programs which
 will use %{name}.
 
-%package	-n %{staticdevelname}
+%package -n %{staticdevelname}
 Summary:	Static development files for %{name}
 Group:		Development/C
 Provides:	lib%{name}-static-devel = %{version}-%{release}
 Requires:	%{develname} = %{version}-%{release}
 Obsoletes:	%mklibname %{name} 0 -d -s
 
-%description	-n %{staticdevelname}
+%description -n %{staticdevelname}
 Static development files for %{name}.
 
 %prep
@@ -67,8 +62,8 @@ Static development files for %{name}.
 %configure2_5x
 %make
 
-#%check
-#make check
+%check
+make check
 
 %install
 rm -rf %{buildroot}
