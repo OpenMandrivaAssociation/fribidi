@@ -5,11 +5,11 @@
 
 Summary:	Library to support Bi-directional scripts
 Name:		fribidi
-Version:	0.10.9
-Release:	%mkrel 2
+Version:	0.19.1
+Release:	%mkrel 1
 License:	LGPLv2+
 Group:		System/Internationalization
-Source: 	http://fribidi.org/download/fribidi-%{version}.tar.bz2
+Source: 	http://fribidi.org/download/fribidi-%{version}.tar.gz
 URL:		http://fribidi.org
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
@@ -69,16 +69,11 @@ make check
 rm -rf %{buildroot}
 %makeinstall_std
 
-%multiarch_binaries %{buildroot}%{_bindir}/fribidi-config
-
 %clean
 rm -rf %{buildroot}
 
 %if %mdkversion < 200900
 %post -n %{libname} -p /sbin/ldconfig
-%endif
-
-%if %mdkversion < 200900
 %postun -n %{libname} -p /sbin/ldconfig
 %endif
 
@@ -93,12 +88,11 @@ rm -rf %{buildroot}
 
 %files -n %{develname}
 %defattr(-, root, root)
-%{_bindir}/fribidi-config
-%multiarch %{multiarch_bindir}/fribidi-config
 %{_libdir}/*.la
 %{_libdir}/*.so
 %{_includedir}/*
 %{_libdir}/pkgconfig/*
+%_mandir/man3/*
 
 %files -n %{staticdevelname}
 %defattr(-, root, root)
