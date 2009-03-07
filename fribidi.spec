@@ -10,6 +10,7 @@ Release:	%mkrel 2
 License:	LGPLv2+
 Group:		System/Internationalization
 Source: 	http://fribidi.org/download/fribidi-%{version}.tar.gz
+Patch0:		fribidi-0.19.1-fix-str-fmt.patch
 URL:		http://fribidi.org
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
@@ -57,6 +58,7 @@ Static development files for %{name}.
 
 %prep
 %setup -q
+%patch0 -p0
 
 %build
 %configure2_5x
