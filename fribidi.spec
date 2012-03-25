@@ -1,18 +1,16 @@
 %define major 0
 %define libname %mklibname %{name} %{major}
 %define develname %mklibname %{name} -d
-%define staticdevelname %mklibname %{name} -d -s
 
 Summary:	Library to support Bi-directional scripts
 Name:		fribidi
 Version:	0.19.2
-Release:	%mkrel 4
+Release:	5
 License:	LGPLv2+
 Group:		System/Internationalization
-Source: 	http://fribidi.org/download/fribidi-%{version}.tar.gz
-Patch0:		fribidi-0.19.1-fix-str-fmt.patch
 URL:		http://fribidi.org
-BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
+Source0: 	http://fribidi.org/download/fribidi-%{version}.tar.gz
+Patch0:		fribidi-0.19.1-fix-str-fmt.patch
 
 %description
 A library to handle bidirectional scripts (eg hebrew, arabic), so that
@@ -23,7 +21,6 @@ The library uses unicode internally.
 %package -n %{libname}
 Summary:	Library to support Bi-directional scripts
 Group:		System/Internationalization
-Requires:	%{name} = %{version}
 
 %description -n %{libname}
 A library to handle bidirectional scripts (eg hebrew, arabic), so that
@@ -34,68 +31,40 @@ The library uses unicode internally.
 %package -n %{develname}
 Summary:	Libraries and headers for development with %{name}
 Group:		Development/C
-Provides:	lib%{name}-devel = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
 Requires:	%{libname} = %{version}-%{release}
-Obsoletes:	%mklibname %{name} 0 -d
+Obsoletes:	%{_lib}fribidi-static-devel
 
 %description -n %{develname}
 This package includes the libraries and header files for the %{name}
 package.
-
-Install this package if you want to develop or compile programs which
-will use %{name}.
-
-%package -n %{staticdevelname}
-Summary:	Static development files for %{name}
-Group:		Development/C
-Provides:	lib%{name}-static-devel = %{version}-%{release}
-Requires:	%{develname} = %{version}-%{release}
-Obsoletes:	%mklibname %{name} 0 -d -s
-
-%description -n %{staticdevelname}
-Static development files for %{name}.
 
 %prep
 %setup -q
 %patch0 -p0
 
 %build
-%configure2_5x
+%configure2_5x \
+	--disable-static
+
 %make
 
 %check
 make check
 
 %install
-rm -rf %{buildroot}
 %makeinstall_std
 
-%clean
-rm -rf %{buildroot}
-
-%if %mdkversion < 200900
-%post -n %{libname} -p /sbin/ldconfig
-%postun -n %{libname} -p /sbin/ldconfig
-%endif
-
 %files
-%defattr(-,root,root)
 %doc README AUTHORS ChangeLog TODO THANKS NEWS
 %{_bindir}/fribidi
 
 %files -n %{libname}
-%defattr(-,root,root)
-%{_libdir}/*.so.%{major}*
+%{_libdir}/libfribidi.so.%{major}*
 
 %files -n %{develname}
-%defattr(-, root, root)
-%{_libdir}/*.la
 %{_libdir}/*.so
 %{_includedir}/*
 %{_libdir}/pkgconfig/*
 %_mandir/man3/*
 
-%files -n %{staticdevelname}
-%defattr(-, root, root)
-%{_libdir}/*.a
