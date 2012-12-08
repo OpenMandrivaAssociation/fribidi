@@ -4,12 +4,12 @@
 
 Summary:	Library to support Bi-directional scripts
 Name:		fribidi
-Version:	0.19.2
-Release:	5
+Version:	0.19.5
+Release:	1
 License:	LGPLv2+
 Group:		System/Internationalization
 URL:		http://fribidi.org
-Source0: 	http://fribidi.org/download/fribidi-%{version}.tar.gz
+Source0: 	http://fribidi.org/download/fribidi-%{version}.tar.bz2
 Patch0:		fribidi-0.19.1-fix-str-fmt.patch
 
 %description
@@ -33,7 +33,7 @@ Summary:	Libraries and headers for development with %{name}
 Group:		Development/C
 Provides:	%{name}-devel = %{version}-%{release}
 Requires:	%{libname} = %{version}-%{release}
-Obsoletes:	%{_lib}fribidi-static-devel
+Obsoletes:	%{_lib}fribidi-static-devel < 0.19.2-6
 
 %description -n %{develname}
 This package includes the libraries and header files for the %{name}
@@ -67,4 +67,3 @@ make check
 %{_includedir}/*
 %{_libdir}/pkgconfig/*
 %_mandir/man3/*
-
