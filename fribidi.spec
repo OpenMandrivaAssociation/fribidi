@@ -1,15 +1,15 @@
-%define major	0
-%define libname	%mklibname %{name} %{major}
-%define devname	%mklibname %{name} -d
+%define major 0
+%define libname %mklibname %{name} %{major}
+%define devname %mklibname %{name} -d
 
 Summary:	Library to support Bi-directional scripts
 Name:		fribidi
 Version:	0.19.5
-Release:	1
+Release:	2
 License:	LGPLv2+
 Group:		System/Internationalization
 Url:		http://fribidi.org
-Source0: 	http://fribidi.org/download/fribidi-%{version}.tar.bz2
+Source0:	http://fribidi.org/download/fribidi-%{version}.tar.bz2
 Patch0:		fribidi-0.19.1-fix-str-fmt.patch
 
 %description
