@@ -5,7 +5,7 @@
 Summary:	Library to support Bi-directional scripts
 Name:		fribidi
 Version:	0.19.5
-Release:	3
+Release:	4
 License:	LGPLv2+
 Group:		System/Internationalization
 Url:		http://fribidi.org
