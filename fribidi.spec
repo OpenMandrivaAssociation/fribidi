@@ -10,7 +10,6 @@ License:	LGPLv2+
 Group:		System/Internationalization
 Url:		http://fribidi.org
 Source0:	http://fribidi.org/download/fribidi-%{version}.tar.bz2
-Patch0:		fribidi-0.19.1-fix-str-fmt.patch
 
 %description
 A library to handle bidirectional scripts (eg hebrew, arabic), so that
@@ -41,7 +40,6 @@ package.
 
 %prep
 %setup -q
-%patch0 -p0
 
 %build
 %configure
@@ -65,5 +63,4 @@ make check
 %{_libdir}/*.so
 %{_includedir}/*
 %{_libdir}/pkgconfig/*
-%_mandir/man3/*
-
+%{_mandir}/man3/*
