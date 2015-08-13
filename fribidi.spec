@@ -10,6 +10,7 @@ License:	LGPLv2+
 Group:		System/Internationalization
 Url:		http://fribidi.org
 Source0:	http://fribidi.org/download/fribidi-%{version}.tar.bz2
+BuildRequires:	pkgconfig(glib-2.0)
 
 %description
 A library to handle bidirectional scripts (eg hebrew, arabic), so that
