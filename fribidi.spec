@@ -11,7 +11,7 @@ Group:		System/Internationalization
 Url:		http://fribidi.org
 Source0:	http://fribidi.org/download/fribidi-%{version}.tar.bz2
 # Reduce the messup of some insane preprocessor abuse
-#Patch0:		fribidi-0.19.7-clang.patch
+Patch0:		fribidi-0.19.7-clang.patch
 BuildRequires:	pkgconfig(glib-2.0)
 
 %description
