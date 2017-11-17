@@ -5,13 +5,13 @@
 Summary:	Library to support Bi-directional scripts
 Name:		fribidi
 Version:	0.19.7
-Release:	4
+Release:	5
 License:	LGPLv2+
 Group:		System/Internationalization
 Url:		http://fribidi.org
 Source0:	http://fribidi.org/download/fribidi-%{version}.tar.bz2
 # Reduce the messup of some insane preprocessor abuse
-Patch0:		fribidi-0.19.7-clang.patch
+#Patch0:		fribidi-0.19.7-clang.patch
 BuildRequires:	pkgconfig(glib-2.0)
 
 %description
