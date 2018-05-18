@@ -4,15 +4,14 @@
 
 Summary:	Library to support Bi-directional scripts
 Name:		fribidi
-Version:	0.19.7
-Release:	5
+Version:	1.0.3
+Release:	1
 License:	LGPLv2+
 Group:		System/Internationalization
 Url:		http://fribidi.org
 Source0:	http://fribidi.org/download/fribidi-%{version}.tar.bz2
-# Reduce the messup of some insane preprocessor abuse
-Patch0:		fribidi-0.19.7-clang.patch
 BuildRequires:	pkgconfig(glib-2.0)
+BuildRequires:	meson
 
 %description
 A library to handle bidirectional scripts (eg hebrew, arabic), so that
@@ -43,18 +42,18 @@ package.
 
 %prep
 %setup -q
-%apply_patches
+%autopatch -p1
 
 %build
-%configure
+%meson
 
-%make
+%meson_build
 
 %check
 make check
 
 %install
-%makeinstall_std
+%meson_install
 
 %files
 %doc README AUTHORS ChangeLog TODO THANKS NEWS
