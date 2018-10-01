@@ -48,9 +48,6 @@ package.
 
 %meson_build
 
-%check
-make check
-
 %install
 %meson_install
 
