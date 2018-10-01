@@ -4,7 +4,7 @@
 
 Summary:	Library to support Bi-directional scripts
 Name:		fribidi
-Version:	1.0.3
+Version:	1.0.5
 Release:	1
 License:	LGPLv2+
 Group:		System/Internationalization
@@ -41,8 +41,7 @@ This package includes the libraries and header files for the %{name}
 package.
 
 %prep
-%setup -q
-%autopatch -p1
+%autosetup -p1
 
 %build
 %meson
