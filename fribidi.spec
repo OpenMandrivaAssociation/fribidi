@@ -4,12 +4,12 @@
 
 Summary:	Library to support Bi-directional scripts
 Name:		fribidi
-Version:	1.0.5
-Release:	2
+Version:	1.0.8
+Release:	1
 License:	LGPLv2+
 Group:		System/Internationalization
 Url:		http://fribidi.org
-Source0:	http://fribidi.org/download/fribidi-%{version}.tar.bz2
+Source0:	https://github.com/fribidi/fribidi/releases/download/v1.0.8/%{name}-%{version}.tar.bz2
 BuildRequires:	pkgconfig(glib-2.0)
 BuildRequires:	meson
 
