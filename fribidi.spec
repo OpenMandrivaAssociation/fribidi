@@ -12,7 +12,7 @@
 
 Summary:	Library to support Bi-directional scripts
 Name:		fribidi
-Version:	1.0.11
+Version:	1.0.12
 Release:	1
 License:	LGPLv2+
 Group:		System/Internationalization
@@ -103,7 +103,7 @@ package.
 %{_libdir}/*.so
 %{_includedir}/*
 %{_libdir}/pkgconfig/*
-%{_mandir}/man3/*
+%doc %{_mandir}/man3/*
 
 %if %{with compat32}
 %files -n %{lib32name}
