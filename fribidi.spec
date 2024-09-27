@@ -12,7 +12,7 @@
 
 Summary:	Library to support Bi-directional scripts
 Name:		fribidi
-Version:	1.0.15
+Version:	1.0.16
 Release:	1
 License:	LGPLv2+
 Group:		System/Internationalization
