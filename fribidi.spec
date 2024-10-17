@@ -16,7 +16,7 @@ Version:	1.0.16
 Release:	1
 License:	LGPLv2+
 Group:		System/Internationalization
-Url:		http://fribidi.org
+Url:		https://fribidi.org
 Source0:	https://github.com/fribidi/fribidi/releases/download/v%{version}/%{name}-%{version}.tar.xz
 BuildRequires:	pkgconfig(glib-2.0)
 BuildRequires:	meson
